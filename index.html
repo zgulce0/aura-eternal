@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Aura Eternal v21 ✨🌸</title>
+    <style>
+        :root { --bg: #e2d1c3; --paper: #fffcf5; --accent: #b08968; --line: #e0d5c5; --sakura: #ff85a2; }
+        .sakura-mode { --bg: #ffdde1; --paper: #fff5f7; --accent: #ff85a2; --line: #f7dadd; }
+        
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #4b3832; transition: 0.8s ease; display: flex; justify-content: center; align-items: center; min-height: 100vh; perspective: 2000px; overflow: hidden; }
+
+        /* --- DREAMY CLOUD LOCK SCREEN --- */
+        #lockScreen { 
+            position: fixed; inset: 0; 
+            background: linear-gradient(180deg, #ffdde1 0%, #ee9ca7 100%); 
+            z-index: 10000; display: flex; align-items: center; justify-content: center; 
+            overflow: hidden; transition: 0.8s;
+        }
+
+        .cloud {
+            position: absolute; background: white; border-radius: 100px;
+            filter: blur(8px); opacity: 0.7; 
+            animation: moveClouds linear infinite;
+            box-shadow: 0 0 20px rgba(255,255,255,0.8); 
+        }
+        
+        .cloud::after, .cloud::before { content: ''; position: absolute; background: white; border-radius: 50%; }
+        .cloud::after { width: 100px; height: 100px; top: -50px; left: 30px; }
+        .cloud::before { width: 120px; height: 120px; top: -60px; right: 40px; }
+
+        @keyframes moveClouds {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(110vw); }
+        }
+
+        .lock-card { 
+            background: rgba(255,255,255,0.45); backdrop-filter: blur(10px);
+            padding: 50px; border-radius: 40px; text-align: center; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); z-index: 10; border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* --- ANA TASARIM --- */
+        .theme-selector { position: absolute; top: -50px; right: 20px; display: flex; gap: 10px; }
+        .theme-btn { width: 35px; height: 35px; border-radius: 50%; border: 2px solid white; cursor: pointer; transition: 0.3s; }
+        .book-container { display: flex; width: 95vw; max-width: 1400px; height: 90vh; background: #4e342e; padding: 12px; border-radius: 15px; box-shadow: 0 50px 100px rgba(0,0,0,0.4); position: relative; transform-style: preserve-3d; transition: transform 0.6s ease-in-out; }
+        .flipping { transform: rotateY(-12deg) scale(0.96); filter: brightness(0.9); }
+        .page { flex: 1; background: var(--paper); padding: 25px; position: relative; overflow-y: auto; background-image: linear-gradient(var(--line) 1px, transparent 1px); background-size: 100% 28px; line-height: 28px; transition: 0.5s; }
+        .page-left { border-radius: 10px 0 0 10px; border-right: 2px solid rgba(0,0,0,0.1); }
+        .page-right { border-radius: 0 10px 10px 0; display: flex; flex-direction: column; }
+        .spine { width: 5px; background: linear-gradient(to right, #ccc, #888, #ccc); height: 100%; z-index: 5; }
+        .spiritual-quote { background: white; padding: 15px; border-radius: 12px; text-align: center; font-style: italic; border: 2px solid var(--accent); font-size: 0.9rem; margin-bottom: 20px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
+        
+        /* MOOD TRACKER STİLLERİ */
+        .mood-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.5); padding: 8px; border-radius: 15px; border: 1px solid var(--line); }
+        .mood-btn { font-size: 1.4rem; cursor: pointer; transition: 0.3s; opacity: 0.4; filter: grayscale(1); }
+        .mood-btn:hover { transform: scale(1.2); opacity: 0.8; }
+        .mood-btn.active { opacity: 1; filter: grayscale(0); transform: scale(1.3); text-shadow: 0 0 10px rgba(255,133,162,0.5); }
+
+        h2 { font-family: 'Georgia', serif; font-size: 1.1rem; border-bottom: 3px solid var(--accent); margin: 15px 0 10px 0; color: var(--accent); display: inline-block; }
+        .entry-box { background: rgba(255,255,255,0.6); padding: 10px; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 10px; }
+        input, textarea, select { width: 100%; background: transparent; border: none; border-bottom: 1px dashed var(--line); padding: 5px; outline: none; margin-bottom: 5px; font-family: inherit; }
+        .btn { background: var(--accent); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-top: 5px; }
+        
+        .prayer-row { display: flex; justify-content: space-between; gap: 5px; margin: 10px 0; }
+        .prayer-box { flex: 1; height: 55px; border: 2px solid var(--accent); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.65rem; background: white; cursor: pointer; transition: 0.3s; }
+        .prayer-box.done { background: var(--sakura); color: white; border-color: var(--sakura); }
+        
+        .review-item { background: white; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid var(--accent); box-shadow: 0 2px 5px rgba(0,0,0,0.05); font-size: 0.8rem; position: relative; }
+        .review-header { display: flex; justify-content: space-between; font-weight: bold; color: var(--accent); }
+        .review-note { font-style: italic; color: #666; margin-top: 4px; line-height: 1.2; }
+        .delete-btn { color: red; cursor: pointer; font-weight: bold; font-size: 14px; }
+
+        .polaroid { max-width: 180px; background: white; padding: 10px 10px 25px 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); transform: rotate(-2deg); margin: 10px auto; border: 1px solid #ddd; }
+        .polaroid img { width: 100%; border-radius: 2px; }
+        
+        .cycle-phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 10px; }
+        .phase-box { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 5px; text-align: center; font-size: 0.55rem; line-height: 1.2; }
+        .phase-box.active { background: var(--sakura); color: white; border-color: var(--sakura); font-weight: bold; }
+
+        .water-glasses { display: flex !important; flex-direction: row !important; gap: 4px; align-items: center; }
+        .water-glass { width: 18px; height: 28px; border: 2px solid #4fc3f7; border-radius: 0 0 5px 5px; flex-shrink: 0; }
+        .water-glass.filled { background: #4fc3f7; }
+
+        .page-nav { position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; align-items: center; }
+        .nav-btn { background: white; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); font-size: 1.2rem; }
+        #jBody { flex-grow: 1; width: 100%; border: none; background: transparent; font-size: 1.05rem; outline: none; resize: none; margin-top: 10px; line-height: 28px; }
+    </style>
+</head>
+<body>
+    <div id="lockScreen">
+        <div class="cloud" style="width:220px; height:70px; top:15%; left:10%; animation-duration: 10s;"></div>
+        <div class="cloud" style="width:280px; height:90px; top:45%; left:40%; animation-duration: 15s;"></div>
+        <div class="cloud" style="width:200px; height:60px; top:75%; left:20%; animation-duration: 12s;"></div>
+        <div class="cloud" style="width:250px; height:80px; top:30%; left:70%; animation-duration: 14s;"></div>
+        
+        <div class="lock-card">
+            <h1 style="color:white; text-shadow: 0 3px 15px rgba(0,0,0,0.2); font-family: 'Georgia', serif; margin-bottom: 20px;">Aura Eternal ✨</h1>
+            <input type="password" id="pass" placeholder="Şifre" style="text-align: center; border-radius: 20px; border: 2px solid white; padding: 12px; width: 220px; background: rgba(255,255,255,0.5);"><br>
+            <button class="btn" style="background:#ff85a2; margin-top: 20px; border-radius: 20px; padding: 12px 40px;" onclick="unlock()">Defteri Aç</button>
+        </div>
+    </div>
+
+    <div class="book-container" id="book">
+        <div class="theme-selector"><div class="theme-btn" style="background:#b08968" onclick="setMode('latte')"></div><div class="theme-btn" style="background:#ff85a2" onclick="setMode('sakura')"></div></div>
+        
+        <div class="page page-left">
+            <div id="spiritualBox" class="spiritual-quote">Bismillah...</div>
+            
+            <div class="mood-container">
+                <span class="mood-btn" onclick="setMood('😊')" title="Mutlu">😊</span>
+                <span class="mood-btn" onclick="setMood('🥰')" title="Aşık/Huzurlu">🥰</span>
+                <span class="mood-btn" onclick="setMood('😴')" title="Yorgun">😴</span>
+                <span class="mood-btn" onclick="setMood('😔')" title="Üzgün">😔</span>
+                <span class="mood-btn" onclick="setMood('💅')" title="Slayer">💅</span>
+            </div>
+
+            <h2>🕌 Namaz Çetelesi</h2>
+            <div class="prayer-row">
+                <div class="prayer-box" id="p1" onclick="togglePrayer(0)">Sabah</div>
+                <div class="prayer-box" id="p2" onclick="togglePrayer(1)">Öğle</div>
+                <div class="prayer-box" id="p3" onclick="togglePrayer(2)">İkindi</div>
+                <div class="prayer-box" id="p4" onclick="togglePrayer(3)">Akşam</div>
+                <div class="prayer-box" id="p5" onclick="togglePrayer(4)">Yatsı</div>
+            </div>
+            
+            <h2>📚 Kitap & Film Eleştirilerim</h2>
+            <div class="entry-box">
+                <input type="text" id="libT" placeholder="Eserin Adı">
+                <select id="libR">
+                    <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (Efsane)</option>
+                    <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="⭐⭐⭐">⭐⭐⭐ (İdare Eder)</option>
+                    <option value="⭐⭐">⭐⭐ (Sıkıldım)</option>
+                    <option value="⭐">⭐ (Zaman Kaybı)</option>
+                </select>
+                <textarea id="libN" placeholder="Eser hakkındaki notların..." style="height: 50px; font-size: 0.8rem;"></textarea>
+                <button class="btn" onclick="addReview()">Kaydet</button>
+                <div id="libList" style="margin-top: 15px;"></div>
+            </div>
+
+            <h2>📿 Zikir & Notlar</h2>
+            <div class="entry-box">
+                <input type="text" id="zkInp" placeholder="Zikir veya kısa not...">
+                <button class="btn" onclick="addItem('zikirs', 'zkInp')">Ekle</button>
+                <div id="zikirList" style="margin-top: 10px; font-size: 0.8rem;"></div>
+            </div>
+        </div>
+
+        <div class="spine"></div>
+
+        <div class="page page-right">
+            <div style="display:flex; justify-content:space-between; align-items:center;"><span id="jDate" style="font-weight:bold; color:var(--accent)"></span><button class="btn" onclick="document.getElementById('fileInp').click()">🖼️ Foto</button><input type="file" id="fileInp" hidden accept="image/*" onchange="uploadImg(event)"></div>
+            <h1 id="jTitle" contenteditable="true" style="outline:none; color: var(--accent); margin: 10px 0; font-size: 1.5rem;">Başlık...</h1>
+            <div class="polaroid" id="polBox" style="display:none;"><img id="polImg" src=""><div onclick="removeImg()" style="text-align:center; color:red; cursor:pointer; font-size:10px; margin-top:5px;">Kaldır ✖</div></div>
+            <textarea id="jBody" placeholder="Bugün neler yaşadın?..."></textarea>
+            
+            <div class="entry-box" style="border: 2px solid var(--sakura); margin-top: 15px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-weight:bold; color:var(--sakura); font-size:0.8rem;">🌸 Döngü Takibi</span><button class="btn" style="background:var(--sakura); font-size:0.6rem; padding: 4px 10px;" onclick="startCycle()">Başlat</button></div>
+                <div class="cycle-phases">
+                    <div class="phase-box" id="phase1">Menst.<span>1-6 G</span></div><div class="phase-box" id="phase2">Folik.<span>7-13 G</span></div><div class="phase-box" id="phase3">Ovül.<span>14-16 G</span></div><div class="phase-box" id="phase4">Luteal<span>17-30 G</span></div>
+                </div>
+                <div id="cycleStatus" style="font-size:0.7rem; text-align:center; margin-top:5px; font-weight:bold; color:var(--sakura)"></div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 10px;">
+                <div class="water-glasses" id="waterGlasses">
+                    <div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div><div class="water-glass"></div>
+                </div>
+                <button class="btn" style="background:#4fc3f7; font-size:0.7rem;" onclick="drink()">💧 İçtim</button>
+            </div>
+        </div>
+        <div class="page-nav"><button class="nav-btn" onclick="changeDay(-1)">◀</button><span id="currentDateLabel" style="font-weight:bold; color:white; background:var(--accent); padding:10px 25px; border-radius:30px;"></span><button class="nav-btn" onclick="changeDay(1)">▶</button></div>
+    </div>
+
+    <script>
+        const quotes = ["Kalpler ancak Allah'ı anmakla huzur bulur.", "Allah sabredenlerle beraberdir.", "Niyetiniz hayır olsun.", "Zorlukla beraber kolaylık vardır."];
+        // Kayıtları tutması için ismi sabitledim
+        let db = JSON.parse(localStorage.getItem('aura_eternal_v21')) || { days: {}, pStart: null, mode: 'latte' };
+        let offset = 0;
+
+        function unlock() { 
+            if(document.getElementById('pass').value === '1234') { 
+                document.getElementById('lockScreen').style.opacity = '0';
+                setTimeout(() => { document.getElementById('lockScreen').style.display = 'none'; init(); }, 800);
+            } else alert("Hatalı!"); 
+        }
+
+        function init() { setMode(db.mode); loadDay(); }
+        function setMode(m) { db.mode = m; document.body.className = m === 'sakura' ? 'sakura-mode' : ''; save(); }
+        function getDDate() { const d = new Date(); d.setDate(d.getDate() + offset); return d; }
+        function getDStr() { return getDDate().toISOString().split('T')[0]; }
+
+        function loadDay() {
+            const dStr = getDStr(); const date = getDDate();
+            const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 86400000);
+            document.getElementById('spiritualBox').innerText = quotes[dayOfYear % quotes.length];
+            document.getElementById('currentDateLabel').innerText = date.toLocaleDateString('tr-TR', {day:'numeric', month:'short'});
+            document.getElementById('jDate').innerText = date.toLocaleDateString('tr-TR', {day:'numeric', month:'long', year:'numeric'});
+            
+            // Mood alanını veritabanına ekliyoruz
+            if(!db.days[dStr]) db.days[dStr] = { title: "", body: "", img: "", water: 0, prayers: [0,0,0,0,0], zikirs: [], reviews: [], mood: "" };
+            const day = db.days[dStr];
+            
+            document.getElementById('jTitle').innerText = day.title || "Başlık...";
+            document.getElementById('jBody').value = day.body;
+            document.getElementById('polBox').style.display = day.img ? 'block' : 'none';
+            if(day.img) document.getElementById('polImg').src = day.img;
+            renderUI(day);
+        }
+
+        function renderUI(day) {
+            day.prayers.forEach((p, i) => document.getElementById('p' + (i+1)).className = p === 1 ? 'prayer-box done' : 'prayer-box');
+            document.getElementById('zikirList').innerHTML = day.zikirs.map((z, i) => `• ${z} <span class="delete-btn" onclick="deleteItem('zikirs', ${i})">×</span><br>`).join('');
+            document.getElementById('libList').innerHTML = day.reviews.map((r, i) => `
+                <div class="review-item">
+                    <div class="review-header">
+                        <span>${r.t}</span>
+                        <span>${r.r} <span class="delete-btn" onclick="deleteItem('reviews', ${i})">×</span></span>
+                    </div>
+                    ${r.n ? `<div class="review-note">${r.n}</div>` : ''}
+                </div>
+            `).join('');
+            document.querySelectorAll('.water-glass').forEach((g, i) => g.className = (i < day.water) ? 'water-glass filled' : 'water-glass');
+            
+            // Mood Butonlarını Güncelle
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText === day.mood) btn.classList.add('active');
+            });
+
+            updateCycle(getDDate());
+        }
+
+        // MOOD AYARLAMA FONKSİYONU
+        function setMood(m) {
+            db.days[getDStr()].mood = m;
+            save();
+            loadDay();
+        }
+
+        function addReview() { 
+            const t = document.getElementById('libT').value; 
+            const r = document.getElementById('libR').value; 
+            const n = document.getElementById('libN').value; 
+            if(t){
+                db.days[getDStr()].reviews.push({t, r, n}); 
+                document.getElementById('libT').value = ''; document.getElementById('libN').value = '';
+                save(); loadDay();
+            } 
+        }
+
+        function updateCycle(viewDate) {
+            document.querySelectorAll('.phase-box').forEach(b => b.classList.remove('active'));
+            const status = document.getElementById('cycleStatus');
+            if(!db.pStart) { status.innerText = "Döngü başlatılmadı."; return; }
+            const diff = Math.floor((new Date(viewDate).setHours(0,0,0,0) - new Date(db.pStart).setHours(0,0,0,0)) / 86400000) + 1;
+            if (diff < 1 || diff > 30) { status.innerText = "Yeni döngü zamanı! ✨"; return; }
+            status.innerText = `Bugün ${diff}. Gün • Yeni döngüye ${30 - diff} gün kaldı`;
+            let pId = (diff <= 6) ? "phase1" : (diff <= 13) ? "phase2" : (diff <= 16) ? "phase3" : "phase4";
+            document.getElementById(pId).classList.add('active');
+        }
+
+        function uploadImg(e) {
+            const reader = new FileReader();
+            reader.onload = (ev) => { db.days[getDStr()].img = ev.target.result; loadDay(); save(); };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        function removeImg() { db.days[getDStr()].img = ""; loadDay(); save(); }
+        function togglePrayer(i) { db.days[getDStr()].prayers[i] = db.days[getDStr()].prayers[i] ? 0 : 1; save(); loadDay(); }
+        function drink() { if(db.days[getDStr()].water < 8) db.days[getDStr()].water++; save(); loadDay(); }
+        function startCycle() { db.pStart = getDDate().toISOString(); save(); loadDay(); }
+        function addItem(key, id) { const v = document.getElementById(id).value; if(v){db.days[getDStr()][key].push(v); document.getElementById(id).value=''; save(); loadDay();} }
+        function deleteItem(key, i) { db.days[getDStr()][key].splice(i, 1); save(); loadDay(); }
+        function changeDay(dir) { saveCurrent(); document.getElementById('book').classList.add('flipping'); setTimeout(() => { offset += dir; loadDay(); document.getElementById('book').classList.remove('flipping'); }, 500); }
+        function saveCurrent() { const d = db.days[getDStr()]; if(d){ d.title = document.getElementById('jTitle').innerText; d.body = document.getElementById('jBody').value; save(); } }
+        function save() { localStorage.setItem('aura_eternal_v21', JSON.stringify(db)); }
+        setInterval(saveCurrent, 5000);
+    </script>
+</body>
+</html>
