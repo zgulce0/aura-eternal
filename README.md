@@ -29,3 +29,8 @@ Bu proje tamamen **HTML, CSS ve JavaScript** kullanılarak tek bir dosyada hazı
 
 ---
 *Bu proje bir "Self-Care" ve "Spiritual" asistanı olarak sevgiyle tasarlanmıştır. 💖*
+<img width="1919" height="911" alt="image" src="https://github.com/user-attachments/assets/140ca295-e7b3-489d-b85b-48523caac513" />
+<img width="1909" height="899" alt="image" src="https://github.com/user-attachments/assets/bde4425a-16a5-45d3-8394-66a7bbea433f" />
+
+
+
